@@ -69,4 +69,23 @@ describe('Schema', () => {
         });
         expect(obj2.__valid).eql(true);
     });
+
+    it('should work properly with schemas in schema', () => {
+        const b = Schema({
+            _: Types.NotNull
+        });
+        const c = Schema({
+            _: Types.NotNull
+        });
+
+        const b_instance = b({_: 1});
+        const c_instance = c({_: 1});
+
+        const a = Schema({
+            obj: b.__schemaType
+        });
+
+        expect(() => a({obj: b_instance})).to.not.throw(Error);
+        expect(() => a({obj: a_instance})).to.throw(Error);
+    });
 });
