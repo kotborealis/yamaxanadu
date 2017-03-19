@@ -88,4 +88,12 @@ describe('Schema', () => {
         expect(() => a({obj: b_instance})).to.not.throw(Error);
         expect(() => a({obj: a_instance})).to.throw(Error);
     });
+
+    it('fix for falsish return value for set trap', () => {
+        const b = Schema({
+            _: Types.String
+        });
+
+        expect(() => b._ = '').to.not.throw(Error);
+    });
 });
