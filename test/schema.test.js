@@ -94,6 +94,19 @@ describe('Schema', () => {
             _: Types.String
         });
 
-        expect(() => b._ = '').to.not.throw(Error);
+        const b_instance = b();
+
+        expect(() => b_instance._ = '').to.not.throw(Error);
+    });
+
+    it('bool test', () => {
+        const b = Schema({
+            _: Types.Bool
+        });
+
+        const b_instance = b();
+
+        expect(() => b_instance._ = null).to.throw(Error);
+        expect(() => b_instance._ = true).to.not.throw(Error);
     });
 });
