@@ -109,4 +109,20 @@ describe('Schema', () => {
         expect(() => b_instance._ = null).to.throw(Error);
         expect(() => b_instance._ = true).to.not.throw(Error);
     });
+
+    it('json', () => {
+        const test = TestSchema({
+            _number: 1,
+            _string: '1',
+            _date: new Date,
+            _array: [],
+            _null: null,
+            _notNull: true,
+            _any: false,
+
+            _number_string: 'ass we can'         
+        });
+
+        console.log(JSON.stringify(test));
+    });
 });
