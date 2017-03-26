@@ -123,6 +123,37 @@ describe('Schema', () => {
             _number_string: 'ass we can'         
         });
 
-        console.log(JSON.stringify(test));
+        expect(JSON.stringify(test)).to.equal(
+            JSON.stringify({
+            _number: 1,
+            _string: '1',
+            _date: new Date,
+            _array: [],
+            _null: null,
+            _notNull: true,
+            _any: false,
+
+            _number_string: 'ass we can'         
+        }));
     });
+
+    it('updated schema-in-schema', () => {
+        const A = Schema();
+        const B = Schema({a: A});
+        const a = A();
+        expect(() => B({a})).to.not.throw(Error);
+    });
+
+    // it('constants', () => {
+    //     const Constants = Schema({
+    //         a: 1,
+    //         b: '2'
+    //     });
+
+    //     const c = Constants();
+
+    //     expect(c.a).to.equal(1);
+    //     expect(c.b).to.equal('2');
+
+    // });
 });
