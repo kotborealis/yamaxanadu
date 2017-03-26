@@ -111,7 +111,7 @@ describe('Schema', () => {
     });
 
     it('json', () => {
-        const test = TestSchema({
+        const obj = {
             _number: 1,
             _string: '1',
             _date: new Date,
@@ -121,20 +121,10 @@ describe('Schema', () => {
             _any: false,
 
             _number_string: 'ass we can'         
-        });
+        };
+        const test = TestSchema(obj);
 
-        expect(JSON.stringify(test)).to.equal(
-            JSON.stringify({
-            _number: 1,
-            _string: '1',
-            _date: new Date,
-            _array: [],
-            _null: null,
-            _notNull: true,
-            _any: false,
-
-            _number_string: 'ass we can'         
-        }));
+        expect(JSON.stringify(test)).to.equal(JSON.stringify(obj));
     });
 
     it('updated schema-in-schema', () => {
@@ -143,17 +133,4 @@ describe('Schema', () => {
         const a = A();
         expect(() => B({a})).to.not.throw(Error);
     });
-
-    // it('constants', () => {
-    //     const Constants = Schema({
-    //         a: 1,
-    //         b: '2'
-    //     });
-
-    //     const c = Constants();
-
-    //     expect(c.a).to.equal(1);
-    //     expect(c.b).to.equal('2');
-
-    // });
 });
