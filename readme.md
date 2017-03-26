@@ -31,3 +31,10 @@ myObj._number_or_string_or_null = null;
 
 myObj.__valid // Returns true if all scheme props are defined
 ```
+
+```
+const A = Schema({});
+const B = Schema({hey: A});
+const a = A();
+const b = B({hey: a});
+```
